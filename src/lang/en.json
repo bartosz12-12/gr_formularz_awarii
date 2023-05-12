@@ -1,0 +1,21 @@
+{
+	"addNotify": "Report has been added!",
+	"selectPosition": "Select workstation",
+	"saveButton": "Save",
+	"positionName": "Workstation",
+	"addReport": "Add report",
+	"reportList": "Report list",
+	"failureForm": "Failure form",
+	"priority": "Priority",
+	"high": "High",
+	"medium": "Medium",
+	"low": "Low",
+	"canWork": "Can work",
+	"yes": "Yes",
+	"no": "No",
+	"malfunctionDescription": "Malfunction description",
+	"sendReport": "Send report",
+	"circumstances": "Circumstances of the event",
+	"reportId": "Report ID",
+	"noReports": "No reports"
+}

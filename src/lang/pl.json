@@ -1,0 +1,21 @@
+{
+	"addNotify": "Zgłoszenie zostało dodane!",
+	"selectPosition": "Wybierz stanowisko",
+	"saveButton": "Zapisz",
+	"positionName": "Stanowisko",
+	"addReport": "Dodaj zgłoszenie",
+	"reportList": "Lista zgłoszeń",
+	"failureForm": "Formularz awarii",
+	"priority": "Priorytet",
+	"high": "Wysoki",
+	"medium": "Średni",
+	"low": "Niski",
+	"canWork": "Czy można pracować",
+	"yes": "Tak",
+	"no": "Nie",
+	"malfunctionDescription": "Opis awarii",
+	"sendReport": "Wyślij zgłoszenie",
+	"circumstances": "Okoliczności zdarzenia",
+	"reportId": "ID Zgłoszenia",
+	"noReports": "Brak zgłoszeń"
+}

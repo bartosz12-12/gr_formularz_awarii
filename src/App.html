@@ -1,0 +1,166 @@
+
+<div class="notify" v-if="showSuccessModal">
+  <div class="notify-content">
+    <p>{{ t('addNotify') }}</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="enter-workstation-id" v-if="!workstationId">
+    <h2>{{ t('selectPosition') }}</h2>
+    <select v-model="inputWorkstationId" required>
+      <option class="option" disabled value="">{{ t('selectPosition') }}</option>
+      <option
+        v-for="workstation in workstations"
+        :key="workstation.id"
+        :value="workstation.id"
+      >
+        {{ workstation.nazwa }}
+      </option>
+    </select>
+    <button @click="saveWorkstationId">{{ t('saveButton') }}</button>
+  </div>
+
+  <div v-else>
+    <div class="nav-container">
+      <h2>
+        {{ t('positionName') }}: [ {{ workstationId }} - {{ workstationName }} ]
+      </h2>
+      <div class="buttons-container">
+        <button @click="showForm"><img src="./icon/plus-circle.svg" alt="">{{ t('addReport') }}</button>
+        <button @click="showList">{{ t('reportList') }}</button>
+      </div>
+    </div>
+
+    <div class="form" v-if="showingForm">
+      <h1>{{ t('failureForm') }}</h1>
+      <form @submit.prevent="submitForm">
+        <div class="form-group">
+          <label for="priorytet"> <strong>{{ t('priority') }}:</strong> </label>
+          <div class="prio">
+            <label class="wysoki">
+              <img src="./icon/alert-triangle-red.svg" alt="" />
+              <input
+                type="radio"
+                name="priorytet"
+                value="1"
+                v-model="priorytet"
+                required
+              />
+              {{ t('high') }}
+            </label>
+            <label class="sredni">
+              <img src="./icon/alert-triangle-orange.svg" alt="" />
+              <input
+                type="radio"
+                name="priorytet"
+                value="2"
+                v-model="priorytet"
+                required
+              />
+              {{ t('medium') }}
+            </label>
+            <label class="niski">
+              <img src="./icon/alert-triangle-green.svg" alt="" />
+              <input
+                type="radio"
+                name="priorytet"
+                value="3"
+                v-model="priorytet"
+                required
+              />
+              {{ t('low') }}
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mozna_pracowac">
+            <strong>{{ t('canWork')}}:</strong></label
+          >
+          <div>
+            <label class="tak">
+              <img src="./icon/thumbs-up.svg" alt="" />
+              <input
+                type="radio"
+                name="mozna_pracowac"
+                value="true"
+                v-model="mozna_pracowac"
+                required
+              />
+              {{ t('yes')}}
+            </label>
+            <label class="nie">
+              <img src="./icon/thumbs-down.svg" alt="" />
+              <input
+                type="radio"
+                name="mozna_pracowac"
+                value=""
+                v-model="mozna_pracowac"
+                required
+              />
+              {{ t('no')}}
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="opis_awarii">
+            <strong>{{ t('malfunctionDescription') }}: </strong></label
+          >
+          <textarea id="opis_awarii" v-model="opis_awarii" required></textarea>
+        </div>
+
+        <button type="submit">{{ t('sendReport') }}</button>
+      </form>
+    </div>
+
+    <div class="form" v-if="showingList">
+      <h1>{{ t('reportList') }}</h1>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('reportId') }}</th>
+              <th>{{ t('priority') }}</th>
+              <th>{{ t('canWork') }}</th>
+              <th>{{ t('circumstances') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-if="reports.length === 0">
+              <td colspan="6">{{ t('noReports') }}</td>
+            </tr>
+            <tr v-else v-for="report in reports" :key="report.id">
+              <td>{{ report.id }}</td>
+              <td>
+                <span
+                  v-if="report.priorytet === 1"
+                  :style="{ color: 'red', 'font-weight': 'bold' }"
+                  >{{ t('high') }}</span
+                >
+                <span
+                  v-else-if="report.priorytet === 2"
+                  :style="{ color: 'orange' }"
+                  >{{ t('medium') }}</span
+                >
+                <span
+                  v-else-if="report.priorytet === 3"
+                  :style="{ color: 'green' }"
+                  >{{ t('low') }}</span
+                >
+              </td>
+              <td>
+                <span v-if="report.mozna_pracowac === 1">{{ t('yes') }}</span>
+                <span v-else-if="report.mozna_pracowac === 0"
+                  >{{ t('no') }}</span
+                >
+              </td>
+              <td>{{ report.opis_awarii }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
